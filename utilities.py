@@ -1,10 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
-import time
-import datetime
 
-
+#Go to given URL and extracy data
 def scrapeData(url):
     try:
         source = requests.get(url)
@@ -19,6 +17,8 @@ def scrapeData(url):
         return movies
     except Exception as e:
         print(e)
+
+#Take the etracted data and convert to CSV
 def convertData(movies, header, filename):
     f = open(filename, "w")
     try:
@@ -36,11 +36,3 @@ def convertData(movies, header, filename):
         f.close()
     except Exception as e:
         print(e)
-
-
-url = 'https://www.imdb.com/chart/top/'
-today = datetime.date.today()
-filename = './IMDb Top 250 Movies ' + str(today) + '.csv'
-header = ['Rank','Name', 'Year', 'Rating']
-movies = scrapeData(url)
-convertData(movies,header, filename)
