@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
+import pysftp
 
 #Go to given URL and extracy data
 def scrapeData(url):
